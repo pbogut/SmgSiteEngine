@@ -20,7 +20,7 @@ class Menu
     protected $id;
     
     /**
-     * @ORM\OneToMany(targetEntity="Item", mappedBy="menu")
+     * @ORM\OneToMany(targetEntity="Item", mappedBy="menu", fetch="EAGER")
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $items;
