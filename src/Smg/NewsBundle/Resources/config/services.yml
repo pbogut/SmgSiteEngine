@@ -1,0 +1,7 @@
+parameters:
+#    smg_news.example.class: Smg\NewsBundle\Example
+
+services:
+#    smg_news.example:
+#        class: %smg_news.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,7 @@
+parameters:
+#    smg_page.example.class: Smg\PageBundle\Example
+
+services:
+#    smg_page.example:
+#        class: %smg_page.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

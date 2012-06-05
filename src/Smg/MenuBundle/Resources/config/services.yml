@@ -1,0 +1,12 @@
+parameters:
+#    smg_menu.example.class: Smg\MenuBundle\Example
+
+services:
+#    smg_menu.example:
+#        class: %smg_menu.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    smg_menu.twig.extension:
+        class: Smg\MenuBundle\Twig\Extension\MenuExtension
+        arguments: ["@service_container"]
+        tags:
+          - { name: twig.extension }

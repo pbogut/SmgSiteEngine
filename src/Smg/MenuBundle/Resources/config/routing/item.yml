@@ -1,0 +1,30 @@
+item:
+    pattern:  /
+    defaults: { _controller: "SmgMenuBundle:Item:index" }
+
+item_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SmgMenuBundle:Item:show" }
+
+item_new:
+    pattern:  /new
+    defaults: { _controller: "SmgMenuBundle:Item:new" }
+
+item_create:
+    pattern:  /create
+    defaults: { _controller: "SmgMenuBundle:Item:create" }
+    requirements: { _method: post }
+
+item_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SmgMenuBundle:Item:edit" }
+
+item_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SmgMenuBundle:Item:update" }
+    requirements: { _method: post }
+
+item_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SmgMenuBundle:Item:delete" }
+    requirements: { _method: post }

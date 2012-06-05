@@ -1,0 +1,5 @@
+<ul id="{{ menu_name }}">
+    {% for item in menu %}
+    <li><a href="{{ item.targetUrl }}" >{{ item.title }}</a></li>
+    {% endfor %}
+</ul>
