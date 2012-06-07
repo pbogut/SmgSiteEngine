@@ -1,5 +1,5 @@
-<ul id="{{ menu_name }}" class="nav nav-pills">
-    {% for item in menu %}
+<ul id="{{ menu.name }}" class="{{ menu.class }}">
+    {% for item in menu.items %}
     <li><a href="{{ item.targetUrl }}" >{{ item.title }}</a></li>
     {% endfor %}
 </ul>

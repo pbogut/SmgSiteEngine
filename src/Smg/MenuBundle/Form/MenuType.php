@@ -10,9 +10,12 @@ class MenuType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('title')
-            ->add('published')
+            ->add('name', null, array(
+                'label' => 'Nazwa (id="")'
+            ))
+            ->add('class', null, array(
+                'label' => 'Klasa (class="")'
+            ))
         ;
     }
 

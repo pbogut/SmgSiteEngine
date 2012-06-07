@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Smg\MenuBundle\Entity\Menu;
 use Smg\MenuBundle\Form\MenuType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Menu controller.
@@ -21,33 +22,10 @@ class MenuController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entities = $em->getRepository('SmgMenuBundle:Menu')->findAll();
+        $menus = $em->getRepository('SmgMenuBundle:Menu')->findAll();
 
         return $this->render('SmgMenuBundle:Menu:index.html.twig', array(
-            'entities' => $entities
-        ));
-    }
-
-    /**
-     * Finds and displays a Menu entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('SmgMenuBundle:Menu')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Menu entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('SmgMenuBundle:Menu:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
+            'menus' => $menus
         ));
     }
 
@@ -82,7 +60,10 @@ class MenuController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('menu_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('menu'));//, array('id' => $entity->getId())));
+            //return new Response('
+                
+            
             
         }
 
@@ -141,7 +122,7 @@ class MenuController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('menu_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('menu'));//, array('id' => $id)));
         }
 
         return $this->render('SmgMenuBundle:Menu:edit.html.twig', array(
@@ -157,22 +138,17 @@ class MenuController extends Controller
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
-        $form->bindRequest($request);
+        $em = $this->getDoctrine()->getEntityManager();
+        $entity = $em->getRepository('SmgMenuBundle:Menu')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository('SmgMenuBundle:Menu')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Menu entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Menu entity.');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('menu'));
     }

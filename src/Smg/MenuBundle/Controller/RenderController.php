@@ -15,6 +15,6 @@ class RenderController extends Controller
          * @var $menu Entity\Menu;
          */
         $menu = $em->getRepository('SmgMenuBundle:Menu')->findOneBy(array('name' => $menu_name));
-        return $this->render('SmgMenuBundle:Render:simple.html.twig', array('menu_name' => $menu->getTitle(), 'menu' => $menu->getItems()));
+        return $this->render('SmgMenuBundle:Render:simple.html.twig', array('menu' => $menu));
     }
 }

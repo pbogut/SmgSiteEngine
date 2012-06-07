@@ -2,10 +2,6 @@ menu:
     pattern:  /
     defaults: { _controller: "SmgMenuBundle:Menu:index" }
 
-menu_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "SmgMenuBundle:Menu:show" }
-
 menu_new:
     pattern:  /new
     defaults: { _controller: "SmgMenuBundle:Menu:new" }
@@ -27,4 +23,3 @@ menu_update:
 menu_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "SmgMenuBundle:Menu:delete" }
-    requirements: { _method: post }

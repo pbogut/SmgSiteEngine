@@ -14,55 +14,18 @@ use Smg\MenuBundle\Form\ItemType;
 class ItemController extends Controller
 {
     /**
-     * Lists all Item entities.
-     *
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entities = $em->getRepository('SmgMenuBundle:Item')->findAll();
-
-        return $this->render('SmgMenuBundle:Item:index.html.twig', array(
-            'entities' => $entities
-        ));
-    }
-
-    /**
-     * Finds and displays a Item entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('SmgMenuBundle:Item')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Item entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('SmgMenuBundle:Item:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
-        ));
-    }
-
-    /**
      * Displays a form to create a new Item entity.
      *
      */
-    public function newAction()
+    public function newAction($menu_id)
     {
         $entity = new Item();
         $form   = $this->createForm(new ItemType(), $entity);
 
         return $this->render('SmgMenuBundle:Item:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView()
+            'form'   => $form->createView(),
+            'menu_id'   => $menu_id
         ));
     }
 
@@ -70,7 +33,7 @@ class ItemController extends Controller
      * Creates a new Item entity.
      *
      */
-    public function createAction()
+    public function createAction($menu_id)
     {
         $entity  = new Item();
         $request = $this->getRequest();
@@ -79,10 +42,11 @@ class ItemController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
+            $entity->setMenu($em->getReference('SmgMenuBundle:Menu', $menu_id));
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('item_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('menu'));
             
         }
 
@@ -141,7 +105,7 @@ class ItemController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('item_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('menu'));
         }
 
         return $this->render('SmgMenuBundle:Item:edit.html.twig', array(
@@ -157,24 +121,19 @@ class ItemController extends Controller
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
-        $form->bindRequest($request);
+        $em = $this->getDoctrine()->getEntityManager();
+        $entity = $em->getRepository('SmgMenuBundle:Item')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository('SmgMenuBundle:Item')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Item entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Item entity.');
         }
 
-        return $this->redirect($this->generateUrl('item'));
+        $em->remove($entity);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('menu'));
     }
 
     private function createDeleteForm($id)

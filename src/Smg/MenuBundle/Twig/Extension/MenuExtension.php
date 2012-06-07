@@ -28,7 +28,7 @@ class MenuExtension extends \Twig_Extension
     {
         $em = $this->container->get('doctrine')->getEntityManager();
         $menu = $em->getRepository('SmgMenuBundle:Menu')->findOneBy(array('name' => $menu_name));
-        echo $this->container->get('twig')->render('SmgMenuBundle:Render:simple.html.twig', array('menu_name' => $menu->getTitle(), 'menu' => $menu->getItems()));
+        echo $this->container->get('twig')->render('SmgMenuBundle:Render:simple.html.twig', array('menu' => $menu));
     }
 
 

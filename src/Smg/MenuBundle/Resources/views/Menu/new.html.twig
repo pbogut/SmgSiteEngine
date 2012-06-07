@@ -1,19 +1,12 @@
 {% extends 'SmgMenuBundle::layout.html.twig' %}
 {% block content %}
-<h1>Menu creation</h1>
+<h1>Dodaj nowe Menu</h1>
 
-<form action="{{ path('menu_create') }}" method="post" {{ form_enctype(form) }}>
+<form id="my_form" action="{{ path('menu_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
+    <input type="hidden" name="menu" value="English">
     <p>
-        <button type="submit">Create</button>
+        <button class="btn btn-primary" type="submit">Dodaj</button>
     </p>
 </form>
-
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('menu') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
 {% endblock %}

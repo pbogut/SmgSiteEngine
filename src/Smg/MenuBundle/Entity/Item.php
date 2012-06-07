@@ -42,12 +42,12 @@ class Item
     protected $targetUrl;
     
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable="true")
      */
     protected $published;
     
     function __construct() {
-        
+        $this->position = 0;
     }
     
     public function getId() {

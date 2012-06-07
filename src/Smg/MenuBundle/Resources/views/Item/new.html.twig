@@ -2,18 +2,10 @@
 {% block content %}
 <h1>Item creation</h1>
 
-<form action="{{ path('item_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('item_create', { 'menu_id': menu_id }) }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
-        <button type="submit">Create</button>
+        <button class="btn btn-primary" type="submit">Dodaj</button>
     </p>
 </form>
-
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('item') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
 {% endblock %}

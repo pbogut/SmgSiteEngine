@@ -19,8 +19,9 @@ class Menu
      */
     protected $id;
     
+    //, fetch="EAGER"
     /**
-     * @ORM\OneToMany(targetEntity="Item", mappedBy="menu")
+     * @ORM\OneToMany(targetEntity="Item", mappedBy="menu", cascade={"persist", "remove"})
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $items;
@@ -30,18 +31,13 @@ class Menu
      * @var type 
      */
     protected $name;
-    
+      
     /**
      * @ORM\Column(type="string", length=50)
      * @var type 
      */
-    protected $title;
+    protected $class;
     
-    /**
-     * @ORM\Column(type="boolean")
-     * @var $published boolean
-     */
-    protected $published;
 
     function __construct() {
         $this->items = new ArrayCollection();
@@ -59,12 +55,8 @@ class Menu
         return $this->name;
     }
 
-    public function getTitle() {
-        return $this->title;
-    }
-
-    public function getPublished() {
-        return $this->published;
+    public function getClass() {
+        return $this->class;
     }
 
     public function setId($id) {
@@ -82,16 +74,11 @@ class Menu
         return $this;
     }
 
-    public function setTitle($title) {
-        $this->title = $title;
+    public function setClass($class) {
+        $this->class = $class;
         return $this;
     }
 
-    public function setPublished($published) {
-        $this->published = $published;
-        return $this;
-    }
-    
     public function __toString() {
         return $this->name;
     }

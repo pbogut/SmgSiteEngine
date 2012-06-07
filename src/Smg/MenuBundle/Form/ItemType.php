@@ -10,11 +10,16 @@ class ItemType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('position')
-            ->add('title')
-            ->add('targetUrl')
-            ->add('published',null,  array('required' => false))
-            ->add('menu', 'entity', array('class' => 'SmgMenuBundle:Menu'))
+            ->add('position', null, array(
+                'label' => 'Pozycja'
+            ))
+            ->add('title', null, array(
+                'label' => 'Tytuł'
+            ))
+            ->add('targetUrl', null, array(
+                'label' => 'Adres docelowy'
+            ))
+            //->add('menu', 'entity', array('class' => 'SmgMenuBundle:Menu'))
         ;
     }
 
