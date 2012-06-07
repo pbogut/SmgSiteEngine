@@ -16,7 +16,11 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><a class="fancybox" href="{{ path('menu_new') }}"><i class="icon-plus-sign"></i> dodaj menu</a></td>
+            <td>
+                <ul class="nav nav-list">
+                    <li><a class="fancybox" href="{{ path('menu_new') }}"><i class="icon-plus-sign"></i> dodaj menu</a></li>
+                </ul>
+            </td>
         </tr>
     {% for menu in menus %}
         <tr>
@@ -24,7 +28,7 @@
             <td></td>
             <td></td>
             <td>
-                <ul class="nav">
+                <ul class="nav nav-list">
                     <li><a class="fancybox" href="{{ path('item_new', { 'menu_id': menu.id }) }}"><i class="icon-plus-sign"></i> dodaj element</a></li>
                     <li><a class="fancybox" href="{{ path('menu_edit', { 'id': menu.id }) }}"><i class="icon-edit"></i> edytuj</a></li> 
                     <li><a href="{{ path('menu_delete', { 'id': menu.id }) }}"><i class="icon-remove-sign"></i> usuń</a></li>
@@ -41,7 +45,7 @@
             </td>
             <td>{{ item.position }}</td>
             <td>
-                <ul class="nav">
+                <ul class="nav nav-list">
                     <li><a class="fancybox" href="{{ path('item_edit', { 'id': item.id }) }}"><i class="icon-edit"></i> edytuj</a></li>
                     <li><a href="{{ path('item_delete', { 'id': item.id }) }}"><i class="icon-remove-sign"></i> usuń</a></li>
                 </ul>
