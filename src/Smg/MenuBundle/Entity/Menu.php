@@ -68,6 +68,11 @@ class Menu
         $this->items = $items;
         return $this;
     }
+    
+    public function addItem(Item $item) {
+        $this->items[] = $item;
+        return $this;
+    }
 
     public function setName($name) {
         $this->name = $name;
