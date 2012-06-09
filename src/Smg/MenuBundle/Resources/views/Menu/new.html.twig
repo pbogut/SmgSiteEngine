@@ -1,8 +1,7 @@
-{% extends 'SmgMenuBundle::layout.html.twig' %}
 {% block content %}
 <h1>Dodaj nowe Menu</h1>
 
-<form id="my_form" action="{{ path('menu_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('menu_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <input type="hidden" name="menu" value="English">
     <p>

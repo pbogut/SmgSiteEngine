@@ -1,6 +1,5 @@
-{% extends 'SmgMenuBundle::layout.html.twig' %}
 {% block content %}
-<h1>Item creation</h1>
+<h1>Nowy element</h1>
 
 <form action="{{ path('item_create', { 'menu_id': menu_id }) }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}

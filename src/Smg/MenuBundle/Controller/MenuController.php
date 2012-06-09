@@ -35,11 +35,10 @@ class MenuController extends Controller
      */
     public function newAction()
     {
-        $entity = new Menu();
-        $form   = $this->createForm(new MenuType(), $entity);
+        $menu = new Menu();
+        $form   = $this->createForm(new MenuType(), $menu);
 
         return $this->render('SmgMenuBundle:Menu:new.html.twig', array(
-            'entity' => $entity,
             'form'   => $form->createView()
         ));
     }
@@ -50,14 +49,14 @@ class MenuController extends Controller
      */
     public function createAction()
     {
-        $entity  = new Menu();
+        $menu  = new Menu();
         $request = $this->getRequest();
-        $form    = $this->createForm(new MenuType(), $entity);
+        $form    = $this->createForm(new MenuType(), $menu);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($entity);
+            $em->persist($menu);
             $em->flush();
 
             return $this->redirect($this->generateUrl('menu'));//, array('id' => $entity->getId())));
@@ -81,19 +80,17 @@ class MenuController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('SmgMenuBundle:Menu')->find($id);
+        $menu = $em->getRepository('SmgMenuBundle:Menu')->find($id);
 
-        if (!$entity) {
+        if (!$menu) {
             throw $this->createNotFoundException('Unable to find Menu entity.');
         }
 
-        $editForm = $this->createForm(new MenuType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createForm(new MenuType(), $menu);
 
         return $this->render('SmgMenuBundle:Menu:edit.html.twig', array(
-            'entity'      => $entity,
+            'menu'      => $menu,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -105,30 +102,28 @@ class MenuController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('SmgMenuBundle:Menu')->find($id);
+        $menu = $em->getRepository('SmgMenuBundle:Menu')->find($id);
 
-        if (!$entity) {
+        if (!$menu) {
             throw $this->createNotFoundException('Unable to find Menu entity.');
         }
 
-        $editForm   = $this->createForm(new MenuType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $editForm   = $this->createForm(new MenuType(), $menu);
 
         $request = $this->getRequest();
 
         $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
+            $em->persist($menu);
             $em->flush();
 
             return $this->redirect($this->generateUrl('menu'));//, array('id' => $id)));
         }
 
         return $this->render('SmgMenuBundle:Menu:edit.html.twig', array(
-            'entity'      => $entity,
+            'menu'      => $menu,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -138,26 +133,16 @@ class MenuController extends Controller
      */
     public function deleteAction($id)
     {
-        $request = $this->getRequest();
-
         $em = $this->getDoctrine()->getEntityManager();
-        $entity = $em->getRepository('SmgMenuBundle:Menu')->find($id);
+        $menu = $em->getRepository('SmgMenuBundle:Menu')->find($id);
 
-        if (!$entity) {
+        if (!$menu) {
             throw $this->createNotFoundException('Unable to find Menu entity.');
         }
 
-        $em->remove($entity);
+        $em->remove($menu);
         $em->flush();
 
         return $this->redirect($this->generateUrl('menu'));
-    }
-
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
     }
 }
