@@ -1,0 +1,29 @@
+backend_news:
+    pattern:  /
+    defaults: { _controller: "SmgNewsBundle:Backend\\News:index" }
+
+backend_news_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SmgNewsBundle:Backend\\News:show" }
+
+backend_news_new:
+    pattern:  /new
+    defaults: { _controller: "SmgNewsBundle:Backend\\News:new" }
+
+backend_news_create:
+    pattern:  /create
+    defaults: { _controller: "SmgNewsBundle:Backend\\News:create" }
+    requirements: { _method: post }
+
+backend_news_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SmgNewsBundle:Backend\\News:edit" }
+
+backend_news_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SmgNewsBundle:Backend\\News:update" }
+    requirements: { _method: post }
+
+backend_news_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SmgNewsBundle:Backend\\News:delete" }

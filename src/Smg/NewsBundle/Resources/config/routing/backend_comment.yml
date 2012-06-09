@@ -1,0 +1,29 @@
+backend_comment:
+    pattern:  /
+    defaults: { _controller: "SmgNewsBundle:Backend\\Comment:index" }
+
+backend_comment_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SmgNewsBundle:Backend\\Comment:show" }
+
+backend_comment_new:
+    pattern:  /new
+    defaults: { _controller: "SmgNewsBundle:Backend\\Comment:new" }
+
+backend_comment_create:
+    pattern:  /create
+    defaults: { _controller: "SmgNewsBundle:Backend\\Comment:create" }
+    requirements: { _method: post }
+
+backend_comment_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SmgNewsBundle:Backend\\Comment:edit" }
+
+backend_comment_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SmgNewsBundle:Backend\\Comment:update" }
+    requirements: { _method: post }
+
+backend_comment_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SmgNewsBundle:Backend\\Comment:delete" }

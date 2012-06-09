@@ -1,0 +1,4 @@
+frontend_comment_create:
+    pattern:  /create/{news_id}
+    defaults: { _controller: "SmgNewsBundle:Frontend\\Comment:create" }
+    requirements: { _method: post }

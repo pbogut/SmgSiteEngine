@@ -1,0 +1,6 @@
+<form action="{{ path('frontend_comment_create', { 'news_id': news.id }) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button class="input-medium btn btn-primary" type="submit">Dodaj</button>
+    </p>
+</form>

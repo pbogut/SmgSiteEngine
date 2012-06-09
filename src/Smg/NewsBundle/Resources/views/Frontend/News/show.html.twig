@@ -1,0 +1,38 @@
+{% extends 'SmgNewsBundle::frontend.html.twig' %}
+{% block content %}
+    <article class="">
+        <header>
+            <h2><a href="{{ path('frontend_news_show', { 'id': news.id }) }}">{{ news.title }}</a></h2>
+            <p class="breadcrumb" align="right">
+                <a>{{ news.author }}</a><span class="divider">|</span>
+                Utworzony: {{ news.created|date('Y-m-d H:i:s') }}
+                {% if news.updated %}<span class="divider">|</span>Zmieniony: {{ news.updated|date('Y-m-d H:i:s') }}{% endif %}
+            </p>
+        </header>
+        <p class="well" >{{ news.content|nl2br }}</p>
+        <footer>
+            <p>
+            <ul class="breadcrumb">Tagi: 
+                {% for tag in news.tagsArray %}
+                <li>
+                    <a href="#">{{ tag }}</a>{% if loop.last %}{% else %}<span class="divider">|</span>{% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </footer>
+    </article>
+    <a name="comments"></a>
+    {% if news.countComments %}<p><h3>Komentarze</h3></p>{% endif %}
+    {% for comment in news.comments %}
+    <article class="well">
+        <header>
+            <a>{{ comment.author }}</a> | dnia {{ comment.created|date('d M Y') }}, o godzinie {{ comment.created|date('H:i:s') }}
+        </header>
+        <p>                
+            {{ comment.content|nl2br }}
+        </p>
+    </article>
+    {% endfor %}
+    <h3>Dodaj komentarz</h3>
+    {% include 'SmgNewsBundle:Frontend/Comment:form.html.twig' %}
+{% endblock %}

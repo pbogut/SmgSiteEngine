@@ -1,0 +1,22 @@
+{% extends 'SmgNewsBundle::backend.html.twig' %}
+{% block content %}
+<form action="{{ path('backend_news_update', { 'id': news.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p align="right">
+        <a href="{{ path('backend_news') }}" class="btn" >Anuluj</a>
+        <button class="btn btn-primary" type="submit">Zapisz</button>
+    </p>
+</form>
+{% if news.countComments %}<p><h3>Komentarze</h3></p>{% endif %}
+    {% for comment in news.comments %}
+    <article class="well">
+        <header>
+            <a class="btn btn-danger pull-right" href="{{ path('backend_comment_delete', { 'id': comment.id }) }}">Usun</a>
+            <a>{{ comment.author }}</a> | dnia {{ comment.created|date('d M Y') }}, o godzinie {{ comment.created|date('H:i:s') }}
+        </header>
+        <p>                
+            {{ comment.content|nl2br }}
+        </p>
+    </article>
+    {% endfor %}
+{% endblock %}

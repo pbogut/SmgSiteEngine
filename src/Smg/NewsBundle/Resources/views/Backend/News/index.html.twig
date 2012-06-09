@@ -1,0 +1,34 @@
+{% extends 'SmgNewsBundle::backend.html.twig' %}
+{% block content %}
+    <p align="right">
+        <a href="{{ path('backend_news_new') }}" class="btn btn-primary">Dodaj nowego newsa</a>
+    </p>
+    {% for news in newses %}
+    <article class="">
+        <header>
+            <h2><a href="{{ path('frontend_news_show', { 'id': news.id }) }}">{{ news.title }}</a></h2>
+            <p class="breadcrumb" align="right">
+                <a>{{ news.author }}</a><span class="divider">|</span>
+                Utworzony: {{ news.created|date('Y-m-d H:i:s') }}
+                {% if news.updated %}<span class="divider">|</span>Zmieniony: {{ news.updated|date('Y-m-d H:i:s') }}{% endif %}
+            </p>
+        </header>
+        <p class="well" >{{ news.content(500)|nl2br }}...</p>
+        <footer>
+            <p>
+            <ul class="breadcrumb">Tagi: 
+                {% for tag in news.tagsArray %}
+                <li>
+                    <a href="#">{{ tag }}</a>{% if loop.last %}{% else %}<span class="divider">|</span>{% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            <p align="right">
+                <span class="breadcrumb">Liczba komentarzy: {{ news.countComments }}</span>
+                <a href="{{ path('backend_news_edit', {'id': news.id }) }}" class="btn btn-primary">Edytuj</a>
+                <a href="{{ path('backend_news_delete', {'id': news.id }) }}" class="btn btn-danger">Usun</a>
+            </p>
+        </footer>
+    </article>
+    {% endfor %}
+{% endblock %}
