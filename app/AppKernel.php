@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Smg\NewsBundle\SmgNewsBundle(),
             new Smg\PageBundle\SmgPageBundle(),
             new Smg\MenuBundle\SmgMenuBundle(),
+            new Smg\UserBundle\SmgUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
