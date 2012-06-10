@@ -36,7 +36,7 @@ class Item
     protected $title;
     
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="target_url", type="string", length=255)
      * @var type 
      */
     protected $targetUrl;
