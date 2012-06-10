@@ -28,8 +28,7 @@ class News {
      * @ORM\Column(type="string", length=128, nullable="true") 
      */
     protected $slug;
-
-        
+    
     /**
      * @ORM\Column(type="text")
      */
