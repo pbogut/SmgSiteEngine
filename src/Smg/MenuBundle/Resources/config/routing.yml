@@ -3,7 +3,7 @@ SmgMenuBundle_homepage:
     defaults: { _controller: SmgMenuBundle:Render:simple }
 SmgMenuBundle_item:
     resource: "@SmgMenuBundle/Resources/config/routing/item.yml"
-    prefix:   /item
+    prefix:   /admin/item
 SmgMenuBundle_menu:
     resource: "@SmgMenuBundle/Resources/config/routing/menu.yml"
-    prefix:   /menu
+    prefix:   /admin/menu

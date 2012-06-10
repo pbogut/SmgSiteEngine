@@ -1,9 +1,9 @@
 SmgNewsBundle_backend_news:
     resource: "@SmgNewsBundle/Resources/config/routing/backend_news.yml"
-    prefix:   /backnews
+    prefix:   /admin/news
 SmgNewsBundle_backend_comment:
     resource: "@SmgNewsBundle/Resources/config/routing/backend_comment.yml"
-    prefix:   /backcomment
+    prefix:   /admin/comment
 SmgNewsBundle_frontend_news:
     resource: "@SmgNewsBundle/Resources/config/routing/frontend_news.yml"
     prefix:   /news
