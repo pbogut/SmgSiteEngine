@@ -14,8 +14,16 @@
         <style>body { padding-bottom: 40px }</style>
     </head>
     <body style="padding: 40px" >
-
+        
     <div class="navbar navbar-inner navbar-fixed-top">
+        
+    <ul class="nav">
+        <li><a href="#">{% if app.user %}Witaj! {{ app.user.username }}{% endif %}</a></li>
+    </ul>
+        
+    <ul class="pull-right nav">
+        <li>{% if app.user %}<a href="{{ path('smg_user_logout') }}">Wyloguj</a>{% else %}<a href="{{ path('smg_user_login') }}">Zaloguj</a>{% endif %}</li>
+    </ul>
         <h1 align="center">Smg Site Engine</h1>
     </div>
 
