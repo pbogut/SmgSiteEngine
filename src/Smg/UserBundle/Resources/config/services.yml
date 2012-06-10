@@ -1,0 +1,7 @@
+parameters:
+#    smg_user.example.class: Smg\UserBundle\Example
+
+services:
+#    smg_user.example:
+#        class: %smg_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

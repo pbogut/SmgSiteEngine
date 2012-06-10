@@ -1,0 +1,8 @@
+smg_user_login:
+    pattern:  /login
+    defaults:  { _controller: SmgUserBundle:Security:login }
+smg_user_login_check:
+    pattern:  /login_check
+#    defaults:  { _controller: SmgUserBundle:Security:login }
+smg_user_logout:
+    pattern:  /logout
