@@ -1,3 +1,7 @@
+SmgUserBundle:
+    resource: "@SmgUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 SmgMenuBundle:
     resource: "@SmgMenuBundle/Resources/config/routing.yml"
     prefix:   /

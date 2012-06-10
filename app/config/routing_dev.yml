@@ -1,6 +1,6 @@
 _welcome:
     pattern:  /
-    defaults: { _controller: SmgMenuBundle:Backend:index }
+    defaults: { _controller: "SmgNewsBundle:Frontend\\News:index" }
 
 _demo_secured:
     resource: "@AcmeDemoBundle/Controller/SecuredController.php"
