@@ -1,6 +1,3 @@
-SmgMenuBundle_homepage:
-    pattern:  /helllo/{menu_name}
-    defaults: { _controller: SmgMenuBundle:Render:simple }
 SmgMenuBundle_item:
     resource: "@SmgMenuBundle/Resources/config/routing/item.yml"
     prefix:   /admin/item
