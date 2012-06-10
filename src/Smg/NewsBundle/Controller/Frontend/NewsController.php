@@ -52,5 +52,5 @@ class NewsController extends Controller
             'comment' => $comment
         ));
     }
-
+    
 }
